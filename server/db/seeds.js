@@ -11,7 +11,8 @@ db.characters.insertMany([
       "Repulsor Beam": 250,
       "Homing Rockets": 500
     },
-    img: "http://pngimg.com/download/29641",
+    img: "http://pngimg.com/uploads/ironman/ironman_PNG48.png",
+    icon: "https://cdn4.iconfinder.com/data/icons/people-avatars-12/24/people_avatar_head_iron_man_marvel_hero-512.png",
     archetype: "Hero"
   },
   {
@@ -25,6 +26,7 @@ db.characters.insertMany([
 
     },
     img: "https://pngimg.com/uploads/hulk/hulk_PNG115.png",
+    icon: "https://cdn4.iconfinder.com/data/icons/blast/127/hulk-512.png",
     archetype: "Hero"
   },
   {
@@ -37,6 +39,7 @@ db.characters.insertMany([
       "Shield Punch": 350
     },
     img: "http://pngimg.com/uploads/captain_america/captain_america_PNG76.png",
+    icon: "https://cdn4.iconfinder.com/data/icons/people-avatars-12/24/people_avatar_head_captain_america_marvel_hero-512.png",
     archetype: "Hero"
   },
   {
@@ -49,6 +52,7 @@ db.characters.insertMany([
       "Lightning Storm": 700
     },
     img: "http://pluspng.com/img-png/thor-hd-png-thor-images-thor-png-2179.png",
+    icon: "https://cdn4.iconfinder.com/data/icons/blast/127/thor-512.png",
     archetype: "Hero"
   }
 ]);

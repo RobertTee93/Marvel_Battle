@@ -5,24 +5,8 @@
 </template>
 
 <script>
-// import SweepSummaryHome from '../components/SweepSummaryHome.vue';
 export default {
-	name: 'home',
-	components: {
-		// SweepSummaryHome
-	},
-	data() {
-		return {
-			sweeps: []
-		}
-	},
-	mounted(){
-		fetch("http://localhost:3000/api/characters/")
-		.then(res => res.json())
-		.then(data => this.sweeps = data)
-	},
-	methods: {
-	}
+	name: 'home'
 }
 </script>
 
