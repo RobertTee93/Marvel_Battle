@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div>
     <img id="player" :src="character.img" alt="">
     <p v-if="!gameOver">Health: {{ character.health }}</p>
 
@@ -9,28 +9,29 @@
     <div id="attack-message">
       <p >{{ attackMessage }}</p>
 
-      <p>{{ character.moves[0] }}</p>
-
       <p id="game-over" v-if="gameOver">Game over {{ winner.name }} Wins!</p>
     </div>
 
+    <div id="pokemon-one-health">
+      <div :style="{width: this.character.health / this.healthBarModifier + '%' }"></div>
+    </div>
 
-    <div id="attack-btn" v-if="!enemyAttacking && !gameOver" v-on:click="randomAttack(character)">
+    <div id="attack-btn" v-if="!enemyAttacking && !gameOver" v-on:click="randomAttack()">
       <p>Attack</p>
-      <!-- <p v-for="(attack, key) of character.moves">{{ key }}</p> -->
     </div>
   </div>
 </template>
 
 <script>
-import { eventBus } from "../main.js"
 export default {
   name: "Battle",
   props: ["character"],
   data(){
     return {
+      healthBarModifier: 1,
       characters: null,
       enemyCharacter: null,
+      enemyHealthBarModifier: 1,
       attackMessage: "Hello",
       enemyAttacking: false,
       currentMove: null,
@@ -48,6 +49,9 @@ export default {
         this.getRandomEnemy()
         this.selectMove(this.character)
       })
+      .then(() => {
+        this.getHealthBarDefaults()
+      })
     },
     randomNumberGen(maxNumber){
       return Math.floor(Math.random() * maxNumber);
@@ -62,11 +66,14 @@ export default {
         }
       }
     },
-    randomAttack(attacker){
-      this.selectMove(attacker)
+    randomAttack(){
+      this.selectMove(this.character)
       this.enemyCharacter.health -= this.currentDamage
       this.attackMessage = `${this.character.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
       this.healthCheck()
+      this.enemyAttacking = true;
+      this.enemyAttack()
+
 
     },
     selectMove(attacker){
@@ -77,11 +84,26 @@ export default {
     healthCheck(){
       if (this.character.health <= 0){
         this.gameOver = true
-        this.winner = this.character
+        this.winner = this.enemyCharacter
       } else if (this.enemyCharacter.health <= 0){
         this.gameOver = true
-        this.winner = this.enemyCharacter
+        this.winner = this.character
       }
+    },
+    enemyAttack(){
+      setTimeout(() => {
+        if (!this.gameOver){
+          this.selectMove(this.enemyCharacter)
+          this.character.health -= this.currentDamage
+          this.attackMessage = `${this.enemyCharacter.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
+          this.healthCheck()
+          this.enemyAttacking = false;
+        }
+      }, 2000)
+    },
+    getHealthBarDefaults(){
+      this.healthBarModifier = this.character.health / 100
+      this.enemyHealthBarModifier = this.enemyCharacter.health / 100
     }
   },
   mounted(){
@@ -99,7 +121,10 @@ export default {
   position:absolute;
   left: 50px;
   top: 100px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(20px 20px 30px #222);
 }
+
 
 #enemy {
   width: 250px;
@@ -107,6 +132,23 @@ export default {
   position:absolute;
   right: 50px;
   top: 100px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(20px 20px 30px #222);
+}
+
+#pokemon-one-health div {
+  height: 5px;
+  border-radius: 5px;
+  background: green;
+}
+
+#pokemon-one-health {
+  width: 100px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  position: absolute;
+  top: 140px;
+  left: 18px;
 }
 
 #attack-btn {
@@ -118,7 +160,6 @@ export default {
   margin: auto;
   bottom: 20px;
   border: 2px solid white;
-
 }
 
 </style>
