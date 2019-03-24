@@ -1,19 +1,21 @@
 <template lang="html">
   <div class="">
     <img id="player" :src="character.img" alt="">
-    <p>Health: {{ character.health }}</p>
+    <p v-if="!gameOver">Health: {{ character.health }}</p>
 
     <img id="enemy" v-if="enemyCharacter" :src="enemyCharacter.img" alt="">
-    <p v-if="enemyCharacter">Enemy health: {{ enemyCharacter.health }}</p>
+    <p v-if="enemyCharacter && !gameOver">Enemy health: {{ enemyCharacter.health }}</p>
 
     <div id="attack-message">
       <p >{{ attackMessage }}</p>
 
       <p>{{ character.moves[0] }}</p>
+
+      <p id="game-over" v-if="gameOver">Game over {{ winner.name }} Wins!</p>
     </div>
 
 
-    <div id="attack-btn" v-if="!enemyAttacking" v-on:click="randomAttack(character)">
+    <div id="attack-btn" v-if="!enemyAttacking && !gameOver" v-on:click="randomAttack(character)">
       <p>Attack</p>
       <!-- <p v-for="(attack, key) of character.moves">{{ key }}</p> -->
     </div>
@@ -32,7 +34,9 @@ export default {
       attackMessage: "Hello",
       enemyAttacking: false,
       currentMove: null,
-      currentDamage: null
+      currentDamage: null,
+      gameOver: false,
+      winner: null
     }
   },
   methods: {
@@ -62,12 +66,22 @@ export default {
       this.selectMove(attacker)
       this.enemyCharacter.health -= this.currentDamage
       this.attackMessage = `${this.character.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
+      this.healthCheck()
 
     },
     selectMove(attacker){
-    var keys = Object.keys(attacker.moves)
-    this.currentMove = keys[this.randomNumberGen(keys.length)];
-    this.currentDamage = attacker.moves[this.currentMove]
+      var keys = Object.keys(attacker.moves)
+      this.currentMove = keys[this.randomNumberGen(keys.length)];
+      this.currentDamage = attacker.moves[this.currentMove]
+    },
+    healthCheck(){
+      if (this.character.health <= 0){
+        this.gameOver = true
+        this.winner = this.character
+      } else if (this.enemyCharacter.health <= 0){
+        this.gameOver = true
+        this.winner = this.enemyCharacter
+      }
     }
   },
   mounted(){
