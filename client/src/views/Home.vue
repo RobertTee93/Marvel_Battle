@@ -12,8 +12,18 @@ export default {
 
 <style lang="css" scoped>
 
-h1 {
+.home {
+	margin: auto;
+	width: 60%;
+	font-size: 20px;
+  font-weight: bold;
   color: white;
+	text-align: center;
+	margin-top: 170px;
+	background-color: #252424ad;
+	border: 1px solid red;
+	border-radius: 40px;
+	text-shadow: 0 0 20px red;
 }
 
 </style>

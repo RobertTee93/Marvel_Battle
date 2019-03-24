@@ -1,10 +1,10 @@
 <template lang="html">
   <div>
     <img id="player" :src="character.img" alt="">
-    <p v-if="!gameOver">Health: {{ character.health }}</p>
+    <p id="player-name">{{ this.character.name }}</p>
 
     <img id="enemy" v-if="enemyCharacter" :src="enemyCharacter.img" alt="">
-    <p v-if="enemyCharacter && !gameOver">Enemy health: {{ enemyCharacter.health }}</p>
+    <p id="enemy-name" v-if="enemyCharacter">{{ this.enemyCharacter.name }}</p>
 
     <div id="attack-message">
       <p >{{ attackMessage }}</p>
@@ -12,13 +12,25 @@
       <p id="game-over" v-if="gameOver">Game over {{ winner.name }} Wins!</p>
     </div>
 
-    <div id="pokemon-one-health">
+    <div id="player-health" v-if="!gameOver">
       <div :style="{width: this.character.health / this.healthBarModifier + '%' }"></div>
+    </div>
+
+    <div id="enemy-health" v-if="!gameOver && enemyCharacter">
+      <div :style="{width: this.enemyCharacter.health / this.enemyHealthBarModifier + '%' }"></div>
     </div>
 
     <div id="attack-btn" v-if="!enemyAttacking && !gameOver" v-on:click="randomAttack()">
       <p>Attack</p>
     </div>
+
+    <div id="enemy-message" v-if="enemyAttacking && !gameOver">
+      <p>{{ this.enemyCharacter.name }} is about to attack!</p>
+    </div>
+
+    <router-link id="select-character" :to="{ name: 'select-character', params: {} }" v-if="gameOver">Back to Character Select
+    </router-link>
+
   </div>
 </template>
 
@@ -32,7 +44,7 @@ export default {
       characters: null,
       enemyCharacter: null,
       enemyHealthBarModifier: 1,
-      attackMessage: "Hello",
+      attackMessage: "Fight!",
       enemyAttacking: false,
       currentMove: null,
       currentDamage: null,
@@ -95,7 +107,7 @@ export default {
         if (!this.gameOver){
           this.selectMove(this.enemyCharacter)
           this.character.health -= this.currentDamage
-          this.attackMessage = `${this.enemyCharacter.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
+          this.attackMessage = `${this.enemyCharacter.name} used ${this.currentMove} for ${this.currentDamage} Damage`
           this.healthCheck()
           this.enemyAttacking = false;
         }
@@ -125,6 +137,30 @@ export default {
   filter: drop-shadow(20px 20px 30px #222);
 }
 
+#player-health div {
+  height: 20px;
+  border-radius: 15px;
+  background: green;
+}
+
+#player-health {
+  width: 200px;
+  border: 2px solid #fff;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 30px;
+  left: 80px;
+}
+
+#player-name {
+  width: 200px;
+  position: absolute;
+  bottom: 3px;
+  left: 80px;
+  margin: 0;
+  text-align: center;
+}
+
 
 #enemy {
   width: 250px;
@@ -136,19 +172,29 @@ export default {
   filter: drop-shadow(20px 20px 30px #222);
 }
 
-#pokemon-one-health div {
-  height: 5px;
-  border-radius: 5px;
+
+#enemy-health div {
+  height: 20px;
+  border-radius: 15px;
   background: green;
 }
 
-#pokemon-one-health {
-  width: 100px;
+#enemy-health {
+  width: 200px;
   border: 2px solid #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   position: absolute;
-  top: 140px;
-  left: 18px;
+  bottom: 30px;
+  right: 80px;
+}
+
+#enemy-name {
+  width: 200px;
+  position: absolute;
+  bottom: 3px;
+  right: 80px;
+  margin: 0;
+  text-align: center;
 }
 
 #attack-btn {
@@ -160,6 +206,38 @@ export default {
   margin: auto;
   bottom: 20px;
   border: 2px solid white;
+}
+
+#enemy-message {
+  position: absolute;
+  width: 200px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  bottom: 20px;
+}
+
+#attack-message {
+  width: 400px;
+  margin: auto;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 30px;
+  background: #ff0c0c73;
+}
+
+#select-character {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  text-decoration: none;
+  color: white;
 }
 
 </style>

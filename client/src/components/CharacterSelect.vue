@@ -24,8 +24,9 @@ export default {
 #character-select-grid {
   display: flex;
   justify-content: center;
-  margin: 0 500px;
+  margin: 0 300px;
   flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .character-select-icon {

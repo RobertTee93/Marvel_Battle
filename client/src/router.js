@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import CharacterSelection from './views/CharacterSelection.vue'
 import BattleScreen from './views/BattleScreen.vue'
+import CharacterManager from './views/CharacterManager.vue'
 
 Vue.use(Router)
 
@@ -26,17 +27,11 @@ export default new Router({
       component: BattleScreen,
       props: true
     },
-    // {
-    //   path: '/admin/sweepstakes/new',
-    //   name: 'admin-sweepstakes-new',
-    //   component: AdminNewSweepstake,
-    //   props: true
-    // },
-    // {
-    //   path: '/admin/sweepstakes/:id/edit',
-    //   name: 'admin-sweepstakes-edit',
-    //   component: AdminEditSweepstake,
-    //   props: true
-    // }
+    {
+      path: '/character-edit',
+      name: 'character-edit',
+      component: CharacterManager,
+      props: true
+    }
   ]
 })
