@@ -8,10 +8,12 @@
 
     <div id="attack-message">
       <p >{{ attackMessage }}</p>
+
+      <p>{{ character.moves[0] }}</p>
     </div>
 
 
-    <div id="attack-btn" v-if="!enemyAttacking" v-on:click="randomAttack">
+    <div id="attack-btn" v-if="!enemyAttacking" v-on:click="randomAttack(character)">
       <p>Attack</p>
       <!-- <p v-for="(attack, key) of character.moves">{{ key }}</p> -->
     </div>
@@ -28,7 +30,9 @@ export default {
       characters: null,
       enemyCharacter: null,
       attackMessage: "Hello",
-      enemyAttacking: false
+      enemyAttacking: false,
+      currentMove: null,
+      currentDamage: null
     }
   },
   methods: {
@@ -38,6 +42,7 @@ export default {
   		.then(data => this.characters = data)
       .then(() => {
         this.getRandomEnemy()
+        this.selectMove(this.character)
       })
     },
     randomNumberGen(maxNumber){
@@ -53,10 +58,16 @@ export default {
         }
       }
     },
-    randomAttack(){
+    randomAttack(attacker){
+      this.selectMove(attacker)
+      this.enemyCharacter.health -= this.currentDamage
+      this.attackMessage = `${this.character.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
+
     },
     selectMove(attacker){
-      let move = attacker.moves[this.randomNumberGen(attacker.moves.length)]
+    var keys = Object.keys(attacker.moves)
+    this.currentMove = keys[this.randomNumberGen(keys.length)];
+    this.currentDamage = attacker.moves[this.currentMove]
     }
   },
   mounted(){
