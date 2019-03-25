@@ -13,7 +13,7 @@ db.characters.insertMany([
       "Homing Rockets": 500
     },
     "img": "iron_man.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/people-avatars-12/24/people_avatar_head_iron_man_marvel_hero-512.png",
+    "icon": "iron_man_icon.png",
     "archetype": "Hero"
   },
   {
@@ -27,7 +27,7 @@ db.characters.insertMany([
       "Resist Banner": 10
     },
     "img": "the_hulk.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/blast/127/hulk-512.png",
+    "icon": "the_hulk_icon.png",
     "archetype": "Hero"
   },
   {
@@ -41,7 +41,7 @@ db.characters.insertMany([
       "Shield Punch": 350
     },
     "img": "captain_america.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/people-avatars-12/24/people_avatar_head_captain_america_marvel_hero-512.png",
+    "icon": "captain_america_icon.png",
     "archetype": "Hero"
   },
   {
@@ -55,7 +55,7 @@ db.characters.insertMany([
       "Lightning Storm": 700
     },
     "img": "thor.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/blast/127/thor-512.png",
+    "icon": "thor_icon.png",
     "archetype": "Hero"
   },
   {
@@ -69,7 +69,7 @@ db.characters.insertMany([
       "I am Groot": "450"
     },
     "img": "groot.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/blast/127/groot-512.png",
+    "icon": "groot_icon.png",
     "archetype": "Hero"
   },
   {
@@ -83,7 +83,7 @@ db.characters.insertMany([
       "Harness infinity Stone": "550"
     },
     "img": "star_lord.png",
-    "icon": "https://cdn4.iconfinder.com/data/icons/heroes-villains-vol-2-colored/100/Star_Lord-512.png",
+    "icon": "star_lord_icon.png",
     "archetype": "Hero"
   },
   {
@@ -97,7 +97,7 @@ db.characters.insertMany([
       "Snap Fingers": "5000"
     },
     "img": "thanos.png",
-    "icon": "https://cdn3.iconfinder.com/data/icons/marvel-avatars-flaticons/64/thanos-avangers-marvel-avatars-gartoon-marvel_avatars-hero-512.png",
+    "icon": "thanos_icon.png",
     "archetype": "Villain"
   },
   {
@@ -111,7 +111,7 @@ db.characters.insertMany([
       "Panther Claw": "300"
     },
     "img": "black_panther.png",
-    "icon": "https://cdn2.iconfinder.com/data/icons/diversity-avatars-vol-3/64/black-panther-comic-superhero-512.png",
+    "icon": "black_panther_icon.png",
     "archetype": "Hero"
   },
   {
@@ -125,7 +125,113 @@ db.characters.insertMany([
       "Venemos Bite": "350"
     },
     "img": "venom.png",
-    "icon": "https://png2.kisspng.com/sh/a72c720b52d68b6dfb881b668ccc2dc1/L0KzQYm3U8E1N6pxfZH0aYP2gLBuTgNxcZVqip92YX6whrb1jB0ue6pyett4dHWwc73wkL1ieqUyjtd3b32wdrLqhb1kdJp1eeR9cz24cbKCU8A5bJNmTadqMT6zSIK4WME3OGI6SqM5M0e3RYSAVsMzNqFzf3==/kisspng-spider-man-venom-symbiote-clip-art-venom-face-cliparts-5aa9308dba55a1.0811816015210374537632.png",
+    "icon": "venom_icon.png",
     "archetype": "Villain"
+  },
+  {
+    "_id": "5c98f606fd68ceb2a91ea114",
+    "name": "Deadpool",
+    "health": "1500",
+    "moves": {
+      "Punch": "50",
+      "Kick": "70",
+      "Sword Attack": "450",
+      "Crack Joke": "0"
+    },
+  "img": "deadpool.png",
+  "icon": "deadpool_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Gamora",
+    "health": "1200",
+    "moves": {
+      "Punch": "40",
+      "Kick": "80",
+      "Spinning Kick": "200",
+      "Sword Swipe": "350"
+    },
+  "img": "gamora.png",
+  "icon": "gamora_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Spiderman",
+    "health": "1500",
+    "moves": {
+      "Punch": "50",
+      "Kick": "70",
+      "Swinging Kick": "200",
+      "Explosive Web": "400"
+    },
+  "img": "spiderman.png",
+  "icon": "spiderman_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Hawkeye",
+    "health": "1000",
+    "moves": {
+      "Punch": "50",
+      "Kick": "70",
+      "Triple Arrow": "300",
+      "Precision Arrow": "400"
+    },
+  "img": "hawkeye.png",
+  "icon": "hawkeye_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Rocket",
+    "health": "1200",
+    "moves": {
+      "Punch": "30",
+      "Kick": "30",
+      "Space Rifle": "330",
+      "Custom Explosive": "550"
+    },
+  "img": "rocket.png",
+  "icon": "rocket_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Ant Man",
+    "health": "1200",
+    "moves": {
+      "Punch": "80",
+      "Kick": "50",
+      "Shrink Attack": "250",
+      "Giant Stomp": "370"
+    },
+  "img": "ant_man.png",
+  "icon": "ant_man_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Winter Soldier",
+    "health": "1300",
+    "moves": {
+      "Punch": "90",
+      "Kick": "40",
+      "Power Punch": "180",
+      "Rapid Punches": "360"
+    },
+  "img": "winter_soldier.png",
+  "icon": "winter_soldier_icon.png",
+  "archetype": "Hero"
+  },
+  {
+    "name": "Loki",
+    "health": "1000",
+    "moves": {
+      "Punch": "30",
+      "Kick": "40",
+      "Backstab": "450",
+      "Twin Daggers": "300"
+    },
+  "img": "loki.png",
+  "icon": "loki_icon.png",
+  "archetype": "Hero/Villain"
   }
+
 ]);

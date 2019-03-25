@@ -2,7 +2,7 @@
   <div id="character-select-grid">
     <div v-for="character of characters" class="character-select-icon">
       <router-link :to="{ name: 'battle-screen', params: {character: character} }">
-      <img :src="character.icon" :alt="character.name">
+      <img :src="getIcon(character)" :alt="character.name">
       </router-link>
     </div>
 
@@ -15,6 +15,9 @@ export default {
   name: "CharacterSelect",
   props: ["characters"],
   methods: {
+    getIcon(character){
+      return require("../assets/icons/" + character.icon)
+    }
   }
 }
 </script>
@@ -36,6 +39,10 @@ export default {
   background-color: #404040cc;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(20px 20px 30px #222);
+}
+
+.character-select-icon:hover {
+  background: #f50404;
 }
 
 .character-select-icon img {

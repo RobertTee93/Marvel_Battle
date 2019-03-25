@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <img id="player" :src="this.playerImageUrl" alt="">
+    <img id="player" class="fight-animation" :src="this.playerImageUrl" alt="">
     <p id="player-name">{{ this.character.name }}</p>
 
     <img id="enemy" v-if="enemyCharacter" :src="this.enemyImageUrl" alt="">
@@ -9,7 +9,8 @@
     <div id="attack-message">
       <p >{{ attackMessage }}</p>
 
-      <p id="game-over" v-if="gameOver">Game over {{ winner.name }} Wins!</p>
+      <p id="game-over" v-if="gameOver && winner.name == enemyCharacter.name">Game over {{ winner.name }} Wins!</p>
+      <p id="game-over" v-if="gameOver && winner.name == character.name">Congratulations! {{ winner.name }} Wins!</p>
     </div>
 
     <div id="player-health" v-if="!gameOver">
@@ -267,6 +268,7 @@ export default {
     top: 100px;
   }
 }
+
 
 @keyframes enemy-enter {
   0%{

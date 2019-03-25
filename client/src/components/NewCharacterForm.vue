@@ -1,6 +1,12 @@
 <template lang="html">
   <div id="form-container">
     <form v-on:submit="addCharacter">
+
+      <div class="form-item">
+        <label for="adminPassword">Admin Password:</label>
+        <input type="text" id="adminPassword" v-model="adminPassword" placeholder="Enter password to add character!" required>
+      </div>
+
       <div class="form-item">
         <label for="name">Name:</label>
         <input type="text" id="name" v-model="name" placeholder="Enter Name:" required>
@@ -80,6 +86,7 @@ export default {
   name: "NewCharacterForm",
   data(){
     return {
+      adminPassword: "",
       name: "",
       health: 0,
       moveOneName: "Punch",
@@ -100,44 +107,46 @@ export default {
     addCharacter(e){
       e.preventDefault()
 
-      const moves = {}
-        moves[this.moveOneName] = this.moveOnePower,
-        moves[this.moveTwoName] = this.moveTwoPower,
-        moves[this.moveThreeName] = this.moveThreePower,
-        moves[this.moveFourName] = this.moveFourPower
+      if (this.adminPassword == "marvel0307"){
+        const moves = {}
+          moves[this.moveOneName] = this.moveOnePower,
+          moves[this.moveTwoName] = this.moveTwoPower,
+          moves[this.moveThreeName] = this.moveThreePower,
+          moves[this.moveFourName] = this.moveFourPower
 
-        this.allMoves = moves
+          this.allMoves = moves
 
-      if (this.name === "" || this.health === "") return;
-      const character = {
-        name: this.name,
-        health: this.health,
-        moves: this.allMoves,
-        img: this.img,
-        icon: this.icon,
-        archetype: this.archetype
+        if (this.name === "" || this.health === "") return;
+        const character = {
+          name: this.name,
+          health: this.health,
+          moves: this.allMoves,
+          img: this.img,
+          icon: this.icon,
+          archetype: this.archetype
+        }
+
+        fetch("http://localhost:3000/api/characters", {
+          method: "POST",
+          body: JSON.stringify(character),
+          headers: { "Content-Type": "application/json" }
+        })
+        .then(result => result.json())
+        .then(result => eventBus.$emit("character-added", result))
+        this.name = ""
+        this.health = 0
+        this.moveOneName = "Punch"
+        this.moveOnePower = 0
+        this.moveTwoName = "Kick"
+        this.moveTwoPower = 0
+        this.moveThreeName = ""
+        this.moveThreePower = 0
+        this.moveFourName = ""
+        this.moveFourPower = 0
+        this.img = ""
+        this.icon = ""
+        this.archetype = ""
       }
-
-      fetch("http://localhost:3000/api/characters", {
-        method: "POST",
-        body: JSON.stringify(character),
-        headers: { "Content-Type": "application/json" }
-      })
-      .then(result => result.json())
-      .then(result => eventBus.$emit("character-added", result))
-      this.name = ""
-      this.health = 0
-      this.moveOneName = "Punch"
-      this.moveOnePower = 0
-      this.moveTwoName = "Kick"
-      this.moveTwoPower = 0
-      this.moveThreeName = ""
-      this.moveThreePower = 0
-      this.moveFourName = ""
-      this.moveFourPower = 0
-      this.img = ""
-      this.icon = ""
-      this.archetype = ""
     }
   }
 }
