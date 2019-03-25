@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <img id="player" :src="character.img" alt="">
+    <img id="player" :src="this.playerImageUrl" alt="">
     <p id="player-name">{{ this.character.name }}</p>
 
-    <img id="enemy" v-if="enemyCharacter" :src="enemyCharacter.img" alt="">
+    <img id="enemy" v-if="enemyCharacter" :src="this.enemyImageUrl" alt="">
     <p id="enemy-name" v-if="enemyCharacter">{{ this.enemyCharacter.name }}</p>
 
     <div id="attack-message">
@@ -40,6 +40,8 @@ export default {
   props: ["character"],
   data(){
     return {
+      playerImageUrl: null,
+      enemyImageUrl: null,
       healthBarModifier: 1,
       characters: null,
       enemyCharacter: null,
@@ -63,6 +65,7 @@ export default {
       })
       .then(() => {
         this.getHealthBarDefaults()
+        this.getImages()
       })
     },
     randomNumberGen(maxNumber){
@@ -81,7 +84,7 @@ export default {
     randomAttack(){
       this.selectMove(this.character)
       this.enemyCharacter.health -= this.currentDamage
-      this.attackMessage = `${this.character.name} has used ${this.currentMove} for ${this.currentDamage} Damage`
+      this.attackMessage = `${this.character.name} used ${this.currentMove} for ${this.currentDamage} Damage`
       this.healthCheck()
       this.enemyAttacking = true;
       this.enemyAttack()
@@ -116,6 +119,10 @@ export default {
     getHealthBarDefaults(){
       this.healthBarModifier = this.character.health / 100
       this.enemyHealthBarModifier = this.enemyCharacter.health / 100
+    },
+    getImages(){
+      this.playerImageUrl = require("../assets/characters/" + this.character.img)
+      this.enemyImageUrl = require("../assets/characters/" + this.enemyCharacter.img)
     }
   },
   mounted(){

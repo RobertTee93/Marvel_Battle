@@ -55,4 +55,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#character-container {
+  text-align: center;
+}
+
+div {
+  text-align: center;
+}
+
 </style>
