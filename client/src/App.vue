@@ -34,6 +34,10 @@ html {
   justify-content: center;
 }
 
+#nav a:hover {
+  background: #f50404;
+}
+
 .nav-btn {
   width: 200px;
   height: 50px;

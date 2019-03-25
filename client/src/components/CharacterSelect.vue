@@ -2,7 +2,7 @@
   <div id="character-select-grid">
     <div v-for="character of characters" class="character-select-icon">
       <router-link :to="{ name: 'battle-screen', params: {character: character} }">
-      <img :src="character.icon" alt="img unavailable">
+      <img :src="character.icon" :alt="character.name">
       </router-link>
     </div>
 

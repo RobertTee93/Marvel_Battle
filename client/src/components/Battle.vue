@@ -142,6 +142,7 @@ export default {
   top: 100px;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(20px 20px 30px #222);
+  animation: player-enter 1s ease-out;
 }
 
 #player-health div {
@@ -177,6 +178,7 @@ export default {
   top: 100px;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(20px 20px 30px #222);
+  animation: enemy-enter 1.5s ease-out;
 }
 
 
@@ -213,6 +215,11 @@ export default {
   margin: auto;
   bottom: 20px;
   border: 2px solid white;
+  border-radius: 10px;
+}
+
+#attack-btn:hover {
+  background: #f50404;
 }
 
 #enemy-message {
@@ -245,6 +252,40 @@ export default {
   top: 50%;
   text-decoration: none;
   color: white;
+}
+
+@keyframes player-enter {
+  0%{
+    position:absolute;
+    left: -450px;
+    top: 110px;
+  }
+
+  100%{
+    position:absolute;
+    left: 50px;
+    top: 100px;
+  }
+}
+
+@keyframes enemy-enter {
+  0%{
+    position:absolute;
+    right: -450px;
+    top: 100px;
+  }
+
+  20%{
+    position:absolute;
+    right: -450px;
+    top: 100px;
+  }
+
+  100%{
+    position:absolute;
+    right: 50px;
+    top: 100px;
+  }
 }
 
 </style>
