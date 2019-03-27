@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link class="nav-btn" to="/"><div>Home</div></router-link>
       <router-link class="nav-btn" to="/select-character"><div>Battle</div></router-link>
+      <router-link class="nav-btn" to="/character-viewer"><div>Character Info</div></router-link>
       <!-- <router-link class="nav-btn" to="/character-edit"><div>Character Manager</div></router-link> -->
     </div>
     <router-view/>

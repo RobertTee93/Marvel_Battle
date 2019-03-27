@@ -115,7 +115,7 @@ export default {
           this.healthCheck()
           this.enemyAttacking = false;
         }
-      }, 2000)
+      }, 1000)
     },
     getHealthBarDefaults(){
       this.healthBarModifier = this.character.health / 100
