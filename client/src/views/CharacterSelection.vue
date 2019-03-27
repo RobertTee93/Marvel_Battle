@@ -1,13 +1,13 @@
 <template lang="html">
   <div>
     <h1>Select a Character</h1>
-    <character-select :characters="characters"></character-select>
+    <character-select-battle :characters="characters"></character-select-battle>
   </div>
 
 </template>
 
 <script>
-import CharacterSelect from "../components/CharacterSelect.vue"
+import CharacterSelectBattle from "../components/CharacterSelectBattle.vue"
 export default {
   name: "CharacterSelectionScreen",
   data(){
@@ -16,7 +16,7 @@ export default {
     }
   },
   components: {
-    CharacterSelect
+    CharacterSelectBattle
   },
   mounted(){
 		fetch("http://localhost:3000/api/characters/")

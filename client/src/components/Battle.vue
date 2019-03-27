@@ -95,7 +95,7 @@ export default {
     selectMove(attacker){
       var keys = Object.keys(attacker.moves)
       this.currentMove = keys[this.randomNumberGen(keys.length)];
-      this.currentDamage = attacker.moves[this.currentMove]
+      this.currentDamage = this.randomNumberGen(attacker.moves[this.currentMove]) + attacker.moves[this.currentMove] / 2
     },
     healthCheck(){
       if (this.character.health <= 0){
