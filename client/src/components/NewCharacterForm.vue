@@ -126,7 +126,7 @@ export default {
           archetype: this.archetype
         }
 
-        fetch("http://localhost:3000/api/characters", {
+        fetch("http://localhost:3000/characters", {
           method: "POST",
           body: JSON.stringify(character),
           headers: { "Content-Type": "application/json" }

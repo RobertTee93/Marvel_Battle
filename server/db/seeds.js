@@ -1,7 +1,4 @@
-use marvel;
-db.dropDatabase();
-
-db.characters.insertMany([
+[
   {
     "_id": "5c97d99a9359ad6914a37cee",
     "name": "Iron Man",
@@ -234,4 +231,4 @@ db.characters.insertMany([
   "archetype": "Hero/Villain"
   }
 
-]);
+]

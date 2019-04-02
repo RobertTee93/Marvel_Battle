@@ -1,23 +1,37 @@
-const express = require('express');
-const app = express();
-
-const parser = require('body-parser');
+const Express = require("express");
+const BodyParser = require("body-parser");
+const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectID;
 const cors = require('cors');
-app.use(cors());
-app.use(parser.json());
 
-const MongoClient = require('mongodb').MongoClient;
-const createRouter = require('./helpers/create_router.js');
+const CONNECTION_URL = "mongodb+srv://Roberttee1993:Okay1324@cluster0-sbd6z.mongodb.net/marvel?retryWrites=true"
+const DATABASE_NAME = "marvel"
 
-MongoClient.connect('mongodb://localhost:27017')
-    .then((client) =>{
-        const db = client.db('marvel');
-        const marvelCharacters = db.collection("characters");
-        const charactersRouter = createRouter(marvelCharacters);
-        app.use("/api/characters", charactersRouter);
-    })
-.catch(console.err);
+var app = Express();
 
-app.listen(3000, function (){
-    console.log(`listening on port ${this.address().port}`);
-})
+app.use(cors())
+app.use(BodyParser.json());
+app.use(BodyParser.urlencoded({ extended: true }));
+
+var database, connection;
+
+
+app.listen(3000, () => {
+  MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
+        if(error) {
+            throw error;
+        }
+        database = client.db(DATABASE_NAME);
+        collection = database.collection("characters");
+        console.log("Connected to `" + DATABASE_NAME + "`!");
+      });
+});
+
+app.get("/characters", (request, response) => {
+    collection.find({}).toArray((error, result) => {
+        if(error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    });
+});

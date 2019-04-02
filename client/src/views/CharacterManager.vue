@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted(){
-    fetch("http://localhost:3000/api/characters/")
+    fetch("http://localhost:3000/characters/")
     .then(res => res.json())
     .then(data => this.characters = data)
 
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     deleteCharacter(id){
-      fetch("http://localhost:3000/api/characters/" + id, {
+      fetch("http://localhost:3000/characters/" + id, {
         method: "DELETE"
       })
       .then(() => {

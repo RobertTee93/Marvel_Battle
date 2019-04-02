@@ -19,7 +19,7 @@ export default {
     CharacterSelectBattle
   },
   mounted(){
-		fetch("http://localhost:3000/api/characters/")
+		fetch("http://localhost:3000/characters/")
 		.then(res => res.json())
 		.then(data => this.characters = data)
 	}
